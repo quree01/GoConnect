@@ -1,0 +1,43 @@
+/* Permissions Page Styling */
+.permissions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ac8ad0, #7192cb);
+    color: white;
+    text-align: center;
+  }
+  
+  .permissions-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .permissions-container p {
+    margin-bottom: 20px;
+  }
+  
+  .permissions-list {
+    margin-bottom: 20px;
+  }
+  
+  .permissions-list label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .permissions-submit {
+    padding: 10px 20px;
+    background: #ffda45;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .permissions-submit:hover {
+    background: #ffc700;
+  }
+  
