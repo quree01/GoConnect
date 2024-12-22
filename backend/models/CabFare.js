@@ -1,24 +1,20 @@
 const mongoose = require("mongoose");
 
-const TripSchema = new mongoose.Schema({
-  user: {
+const CabFareSchema = new mongoose.Schema({
+  platform: {
     type: String,
     required: true,
   },
-  from: {
+  pickup: {
     type: String,
     required: true,
   },
-  to: {
+  dropoff: {
     type: String,
     required: true,
   },
-  date: {
-    type: String,
-    required: true,
-  },
-  time: {
-    type: String,
+  price: {
+    type: Number,
     required: true,
   },
   createdAt: {
@@ -27,4 +23,4 @@ const TripSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Trip", TripSchema);
+module.exports = mongoose.model("CabFare", CabFareSchema);

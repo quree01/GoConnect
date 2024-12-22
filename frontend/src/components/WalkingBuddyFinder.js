@@ -1,45 +1,66 @@
-import React, { useState } from "react";
-import ProfileDropdown from "./ProfileDropdown";
-import ThemeToggle from "./ThemeToggle";
-import "./WalkingBuddyFinder.css";
+import React, { useState, useEffect } from "react";
+import { fetchWalkingBuddies, postWalkingBuddy } from "../api";
 
 function WalkingBuddyFinder() {
-  const [preferences, setPreferences] = useState({
+  const [buddies, setBuddies] = useState([]);
+  const [newBuddy, setNewBuddy] = useState({
+    name: "",
     personality: "introvert",
     profession: "college student",
     age: "",
+    location: "",
   });
 
-  const [buddies, setBuddies] = useState(null);
+  useEffect(() => {
+    const loadBuddies = async () => {
+      try {
+        const response = await fetchWalkingBuddies();
+        setBuddies(response.data);
+      } catch (error) {
+        console.error("Error fetching walking buddies:", error);
+      }
+    };
+    loadBuddies();
+  }, []);
 
-  const handleSearch = () => {
-    const buddyData = [
-      { name: "John Doe", personality: "introvert", profession: "college student", age: 21 },
-      { name: "Jane Smith", personality: "extrovert", profession: "working professional", age: 28 },
-      { name: "Chris Johnson", personality: "ambivert", profession: "college student", age: 22 },
-    ];
-
-    const filteredBuddies = buddyData.filter(
-      (buddy) =>
-        buddy.personality === preferences.personality &&
-        buddy.profession === preferences.profession &&
-        (!preferences.age || buddy.age === parseInt(preferences.age))
-    );
-
-    setBuddies(filteredBuddies);
+  const handleAddBuddy = async () => {
+    try {
+      await postWalkingBuddy(newBuddy);
+      alert("Buddy added successfully!");
+      setNewBuddy({
+        name: "",
+        personality: "introvert",
+        profession: "college student",
+        age: "",
+        location: "",
+      });
+    } catch (error) {
+      console.error("Error adding buddy:", error);
+    }
   };
 
   return (
-    <div className="buddy-container">
-      <ThemeToggle />
-      <ProfileDropdown />
+    <div>
       <h1>Walking Buddy Finder</h1>
-      <p>Find a walking buddy near you based on your preferences</p>
-      <div className="input-group">
-        <select
-          value={preferences.personality}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleAddBuddy();
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Name"
+          value={newBuddy.name}
           onChange={(e) =>
-            setPreferences({ ...preferences, personality: e.target.value })
+            setNewBuddy({ ...newBuddy, name: e.target.value })
+          }
+          required
+        />
+        <select
+          value={newBuddy.personality}
+          onChange={(e) =>
+            setNewBuddy({ ...newBuddy, personality: e.target.value })
           }
         >
           <option value="introvert">Introvert</option>
@@ -47,9 +68,9 @@ function WalkingBuddyFinder() {
           <option value="ambivert">Ambivert</option>
         </select>
         <select
-          value={preferences.profession}
+          value={newBuddy.profession}
           onChange={(e) =>
-            setPreferences({ ...preferences, profession: e.target.value })
+            setNewBuddy({ ...newBuddy, profession: e.target.value })
           }
         >
           <option value="college student">College Student</option>
@@ -57,29 +78,29 @@ function WalkingBuddyFinder() {
         </select>
         <input
           type="number"
-          placeholder="Age (Optional)"
-          value={preferences.age}
-          onChange={(e) => setPreferences({ ...preferences, age: e.target.value })}
+          placeholder="Age"
+          value={newBuddy.age}
+          onChange={(e) => setNewBuddy({ ...newBuddy, age: e.target.value })}
+          required
         />
-        <button onClick={handleSearch}>Find Buddy</button>
-      </div>
-      {buddies && (
-        <div className="buddy-list">
-          <h3>Available Buddies:</h3>
-          <ul>
-            {buddies.length > 0 ? (
-              buddies.map((buddy, index) => (
-                <li key={index}>
-                  <strong>{buddy.name}</strong>: {buddy.personality},{" "}
-                  {buddy.profession}, Age {buddy.age}
-                </li>
-              ))
-            ) : (
-              <li>No matching buddies found</li>
-            )}
-          </ul>
-        </div>
-      )}
+        <input
+          type="text"
+          placeholder="Location"
+          value={newBuddy.location}
+          onChange={(e) =>
+            setNewBuddy({ ...newBuddy, location: e.target.value })
+          }
+          required
+        />
+        <button type="submit">Add Buddy</button>
+      </form>
+      <ul>
+        {buddies.map((buddy, index) => (
+          <li key={index}>
+            {buddy.name}: {buddy.personality}, {buddy.profession}, {buddy.age}, {buddy.location}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

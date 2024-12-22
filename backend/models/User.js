@@ -1,23 +1,16 @@
 const mongoose = require("mongoose");
 
-const TripSchema = new mongoose.Schema({
-  user: {
+const UserSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
-  from: {
+  email: {
     type: String,
     required: true,
+    unique: true,
   },
-  to: {
-    type: String,
-    required: true,
-  },
-  date: {
-    type: String,
-    required: true,
-  },
-  time: {
+  password: {
     type: String,
     required: true,
   },
@@ -27,4 +20,4 @@ const TripSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Trip", TripSchema);
+module.exports = mongoose.model("User", UserSchema);
