@@ -1,23 +1,17 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
-// Create ThemeContext
-const ThemeContext = createContext();
+export const ThemeContext = createContext();
 
-// Custom Hook for using ThemeContext
-export const useTheme = () => useContext(ThemeContext);
+export function ThemeProvider({ children }) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-// ThemeProvider Component
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
-
-  // Toggle between light and dark mode
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className={theme}>{children}</div> {/* Apply theme class */}
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      <div className={isDarkMode ? "dark-mode" : "light-mode"}>{children}</div>
     </ThemeContext.Provider>
   );
-};
+}

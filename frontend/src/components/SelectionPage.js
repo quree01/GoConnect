@@ -1,16 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ProfileDropdown from "./ProfileDropdown";
-import ThemeToggle from "./ThemeToggle";
 import "./SelectionPage.css";
+import ThemeToggle from "./ThemeToggle";
+import GoBackButton from "../components/GoBackButton";
 
 function SelectionPage() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Ensure useNavigate is correctly imported and used.
 
   return (
     <div className="selection-container">
-      <ThemeToggle />
-      <ProfileDropdown />
+       <ThemeToggle />
+       <GoBackButton />
       <h1>Welcome to GoConnect</h1>
       <p>Select an option to get started:</p>
       <div className="button-group">

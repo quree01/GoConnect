@@ -1,50 +1,79 @@
-/* Default body styles */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Light Mode */
+.light-mode {
+  background-color: white;
+  color: black;
 }
 
-/* Default code styles */
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-/* Light mode styles */
-body.light {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-/* Dark mode styles */
-body.dark {
+/* Dark Mode */
+.dark-mode {
   background-color: #121212;
-  color: #ffffff;
+  color: white;
 }
 
-/* Form elements inherit theme colors */
-input, select, textarea {
-  background-color: inherit;
-  color: inherit;
-  border: 1px solid currentColor;
-  padding: 8px;
-  border-radius: 4px;
+/* Common Transitions */
+body, button, input, select {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Forms */
+input, select {
+  font-size: 1rem;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.light-mode input, .light-mode select {
+  background-color: white;
+  color: black;
+}
+
+.dark-mode input, .dark-mode select {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+/* Buttons */
 button {
-  background-color: inherit;
-  color: inherit;
-  border: 1px solid currentColor;
-  padding: 8px 16px;
-  border-radius: 4px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
 }
 
-button:hover {
-  background-color: rgb(255, 255, 255);
+.light-mode button {
+  background-color: #ffda45;
+  color: black;
+}
+
+.light-mode button:hover {
+  background-color: #ffc700;
+}
+
+.dark-mode button {
+  background-color: #333;
+  color: white;
+}
+
+.dark-mode button:hover {
+  background-color: #444;
+}
+
+/* Containers */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5 {
+  margin: 10px 0;
+  transition: color 0.3s ease;
 }

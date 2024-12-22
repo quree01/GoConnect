@@ -1,65 +1,33 @@
 .comparison-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
-    height: 100vh;
-    text-align: center;
-  }
-  
-  .comparison-container h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
-  .input-group input {
-    width: 300px;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  .input-group button {
-    padding: 10px 20px;
-    background: #ffda45;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .input-group button:hover {
-    background: #ffc700;
-  }
-  
-  .price-list {
-    margin-top: 20px;
-  }
-  
-  .price-list h3 {
-    margin-bottom: 10px;
-  }
-  
-  .price-list ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .price-list li {
-    background: rgba(255, 255, 255, 0.1);
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: inherit;
+  color: inherit;
+  height: 100vh;
+  text-align: center;
+}
+
+.input-group input {
+  width: 300px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-group button {
+  padding: 10px 20px;
+  background: #ffda45;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background: #ffc700;
+}

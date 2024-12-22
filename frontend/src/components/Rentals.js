@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ProfileDropdown from "./ProfileDropdown";
-import ThemeToggle from "./ThemeToggle";
 import "./Rentals.css";
+import ThemeToggle from "./ThemeToggle";
+import GoBackButton from "../components/GoBackButton";
 
 function Rentals() {
   const [rentalType, setRentalType] = useState("car");
@@ -10,22 +10,18 @@ function Rentals() {
 
   const handleRentalSubmit = (e) => {
     e.preventDefault();
-    alert(
-      `Rental Confirmed:\nType: ${rentalType}\nLocation: ${location}\nTime: ${time}`
-    );
+    alert(`Rental confirmed for a ${rentalType} at ${location} on ${time}`);
   };
 
   return (
     <div className="rentals-container">
-      <ThemeToggle />
-      <ProfileDropdown />
+       <ThemeToggle />
+       <GoBackButton />
       <h1>Rent a Car or Bike</h1>
-      <p>Choose your rental type, location, and time:</p>
-      <form onSubmit={handleRentalSubmit} className="rental-form">
+      <form className="rental-form" onSubmit={handleRentalSubmit}>
         <div className="form-group">
-          <label htmlFor="rentalType">Rental Type:</label>
+          <label>Rental Type:</label>
           <select
-            id="rentalType"
             value={rentalType}
             onChange={(e) => setRentalType(e.target.value)}
           >
@@ -34,21 +30,18 @@ function Rentals() {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="location">Location:</label>
+          <label>Location:</label>
           <input
             type="text"
-            id="location"
-            placeholder="Enter rental location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="time">Time:</label>
+          <label>Time:</label>
           <input
             type="datetime-local"
-            id="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
             required
