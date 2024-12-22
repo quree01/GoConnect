@@ -1,0 +1,36 @@
+.rentals-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: inherit;
+  color: inherit;
+  height: 100vh;
+  text-align: center;
+}
+
+.rental-form {
+  background: white; /* No transparency for clarity */
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rental-submit {
+  width: 100%;
+  padding: 10px;
+  background: #ffda45;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.rental-submit:hover {
+  background: #ffc700;
+}

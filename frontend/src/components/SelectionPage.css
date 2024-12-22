@@ -1,0 +1,53 @@
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: inherit; /* Or your desired light theme background */
+  color: inherit;
+  text-align: center;
+  padding: 20px;
+}
+
+.selection-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.selection-container p {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #333; /* Slightly muted black for better readability */
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 15px; /* Add spacing between buttons */
+  width: 100%;
+  max-width: 300px; /* Limit the button group's width */
+}
+
+.button-group button {
+  padding: 15px 20px;
+  background: #2575fc; /* Attractive blue color */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth hover effect */
+  text-align: center;
+}
+
+.button-group button:hover {
+  background: #1b5fcc; /* Slightly darker blue on hover */
+  transform: translateY(-2px); /* Subtle hover effect */
+}
+
+.button-group button:active {
+  transform: translateY(0); /* Reset on click */
+  opacity: 0.9;
+}
