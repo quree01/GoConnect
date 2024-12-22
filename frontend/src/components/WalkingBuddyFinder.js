@@ -9,6 +9,7 @@ function WalkingBuddyFinder() {
     personality: "introvert",
     profession: "college student",
     age: "",
+    locality: "",
   });
 
   const [buddies, setBuddies] = useState([
@@ -17,23 +18,56 @@ function WalkingBuddyFinder() {
       personality: "introvert",
       profession: "college student",
       age: 20,
-      location: "Location A",
+      location: "",
+    },
+    {
+      name: "Bob",
+      personality: "extrovert",
+      profession: "working professional",
+      age: 25,
+      location: "",
+    },
+    {
+      name: "Charlie",
+      personality: "ambivert",
+      profession: "college student",
+      age: 22,
+      location: "",
     },
   ]);
 
-  const [markers, setMarkers] = useState([
-    { lat: 12.971598, lng: 77.594566 }, // Example markers
-    { lat: 12.961115, lng: 77.63829 },
-  ]);
+  const localitySuggestions = [
+    "MG Road",
+    "Koramangala",
+    "Indiranagar",
+    "Whitefield",
+    "HSR Layout",
+    "Jayanagar",
+  ];
 
   const handleSearch = () => {
-    alert("Matching buddies found!");
+    // Update buddy locations to match user input locality
+    const updatedBuddies = buddies.map((buddy) => ({
+      ...buddy,
+      location: preferences.locality,
+    }));
+    setBuddies(updatedBuddies);
+
+    if (preferences.locality) {
+      alert(`Available buddies updated for locality: ${preferences.locality}`);
+    } else {
+      alert("Please select a locality.");
+    }
+  };
+
+  const handleLocalityChange = (e) => {
+    setPreferences({ ...preferences, locality: e.target.value });
   };
 
   return (
     <div className="buddy-container">
-       <ThemeToggle />
-       <GoBackButton />
+      <ThemeToggle />
+      <GoBackButton />
       <h1>Find a Walking Buddy</h1>
       <form className="input-group" onSubmit={(e) => e.preventDefault()}>
         <select
@@ -54,6 +88,7 @@ function WalkingBuddyFinder() {
         >
           <option value="college student">College Student</option>
           <option value="working professional">Working Professional</option>
+          <option value="elderly">Elderly People</option>
         </select>
         <input
           type="number"
@@ -61,20 +96,34 @@ function WalkingBuddyFinder() {
           value={preferences.age}
           onChange={(e) => setPreferences({ ...preferences, age: e.target.value })}
         />
+        <input
+          type="text"
+          list="locality-suggestions"
+          placeholder="Enter Locality"
+          value={preferences.locality}
+          onChange={handleLocalityChange}
+        />
+        <datalist id="locality-suggestions">
+          {localitySuggestions.map((locality, index) => (
+            <option key={index} value={locality} />
+          ))}
+        </datalist>
         <button onClick={handleSearch}>Search Buddies</button>
       </form>
       <div className="buddy-list">
-      <h2>Buddy Locations</h2>
-      <GoogleMapComponent markers={markers} />
+        <h2>Buddy Locations</h2>
+        <GoogleMapComponent markers={[]} />
         <h3>Available Buddies:</h3>
         <ul>
           {buddies.map((buddy, index) => (
             <li key={index}>
               <strong>{buddy.name}</strong>: {buddy.personality},{" "}
-              {buddy.profession}, Age {buddy.age}, Location {buddy.location}
+              {buddy.profession}, Age {buddy.age}, Location {buddy.location || "No location set"}
             </li>
           ))}
         </ul>
+        <h3>Your Selected Locality:</h3>
+        <p>{preferences.locality || "No locality selected yet."}</p>
       </div>
     </div>
   );

@@ -61,16 +61,26 @@ function CabPriceComparison() {
         <button onClick={handleSearch}>Compare Prices</button>
       </div>
       {cabFares.length > 0 ? (
-        <div className="price-list">
+        <div className="table-container">
           <h3>Available Prices:</h3>
-          <ul>
-            {cabFares.map((cab, index) => (
-              <li key={index}>
-                <strong>{cab.platform}</strong>: ₹{cab.price} (
-                {cab.distance} km)
-              </li>
-            ))}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Distance (km)</th>
+                <th>Price (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cabFares.map((cab, index) => (
+                <tr key={index}>
+                  <td>{cab.platform}</td>
+                  <td>{cab.distance}</td>
+                  <td>₹{cab.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       ) : (
         pickup &&
