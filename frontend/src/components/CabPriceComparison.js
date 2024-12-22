@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./CabPriceComparison.css";
 import ThemeToggle from "./ThemeToggle";
 import GoBackButton from "../components/GoBackButton";
+import cabData from "../data/cabData"; // Importing the dataset
 
 function CabPriceComparison() {
   const [pickup, setPickup] = useState("");
@@ -9,18 +10,36 @@ function CabPriceComparison() {
   const [cabFares, setCabFares] = useState([]);
 
   const handleSearch = () => {
-    const sampleData = [
-      { platform: "Uber", price: 150 },
-      { platform: "Ola", price: 130 },
-      { platform: "Rapido", price: 100 },
-    ];
-    setCabFares(sampleData);
+    // Filter data for each platform based on pickup and dropoff locations
+    const filteredResults = {
+      ola: cabData.ola.filter(
+        (ride) => ride.pickup === pickup && ride.dropoff === dropoff
+      ),
+      nammaYatri: cabData.nammaYatri.filter(
+        (ride) => ride.pickup === pickup && ride.dropoff === dropoff
+      ),
+      rapido: cabData.rapido.filter(
+        (ride) => ride.pickup === pickup && ride.dropoff === dropoff
+      ),
+    };
+
+    // Combine the results into one array and sort by price
+    const combinedResults = [
+      ...filteredResults.ola.map((ride) => ({ ...ride, platform: "Ola" })),
+      ...filteredResults.nammaYatri.map((ride) => ({
+        ...ride,
+        platform: "Namma Yatri",
+      })),
+      ...filteredResults.rapido.map((ride) => ({ ...ride, platform: "Rapido" })),
+    ].sort((a, b) => a.price - b.price);
+
+    setCabFares(combinedResults); // Set the results in state
   };
 
   return (
     <div className="comparison-container">
-       <ThemeToggle />
-       <GoBackButton />
+      <ThemeToggle />
+      <GoBackButton />
       <h1>Cab Price Comparison</h1>
       <div className="input-group">
         <input
@@ -37,17 +56,25 @@ function CabPriceComparison() {
         />
         <button onClick={handleSearch}>Compare Prices</button>
       </div>
-      {cabFares.length > 0 && (
+      {cabFares.length > 0 ? (
         <div className="price-list">
           <h3>Available Prices:</h3>
           <ul>
             {cabFares.map((cab, index) => (
               <li key={index}>
-                <strong>{cab.platform}</strong>: ₹{cab.price}
+                <strong>{cab.platform}</strong>: ₹{cab.price} (
+                {cab.distance} km)
               </li>
             ))}
           </ul>
         </div>
+      ) : (
+        pickup &&
+        dropoff && (
+          <p style={{ marginTop: "20px" }}>
+            No cabs available for the given locations.
+          </p>
+        )
       )}
     </div>
   );

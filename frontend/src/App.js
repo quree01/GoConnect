@@ -10,6 +10,7 @@ import Rentals from "./components/Rentals";
 import ShareTrips from "./components/ShareTrips";
 import WalkingBuddyFinder from "./components/WalkingBuddyFinder";
 
+
 function App() {
   return (
     <ThemeProvider>

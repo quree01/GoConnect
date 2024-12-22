@@ -25,7 +25,7 @@ function Login() {
       }}
     > <ThemeToggle />
       <div>
-        <img src="/logo.png" alt="GoConnect Logo" style={{ marginBottom: "20px" }} />
+        <img src="/logo.jpg" alt="GoConnect Logo" style={{ marginBottom: "20px" }} />
         <h1>GoConnect</h1>
       </div>
       <div>

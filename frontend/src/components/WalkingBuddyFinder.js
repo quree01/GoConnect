@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./WalkingBuddyFinder.css";
 import ThemeToggle from "./ThemeToggle";
 import GoBackButton from "../components/GoBackButton";
+import GoogleMapComponent from "../components/GoogleMapComponent";
 
 function WalkingBuddyFinder() {
   const [preferences, setPreferences] = useState({
@@ -18,6 +19,11 @@ function WalkingBuddyFinder() {
       age: 20,
       location: "Location A",
     },
+  ]);
+
+  const [markers, setMarkers] = useState([
+    { lat: 12.971598, lng: 77.594566 }, // Example markers
+    { lat: 12.961115, lng: 77.63829 },
   ]);
 
   const handleSearch = () => {
@@ -58,6 +64,8 @@ function WalkingBuddyFinder() {
         <button onClick={handleSearch}>Search Buddies</button>
       </form>
       <div className="buddy-list">
+      <h2>Buddy Locations</h2>
+      <GoogleMapComponent markers={markers} />
         <h3>Available Buddies:</h3>
         <ul>
           {buddies.map((buddy, index) => (

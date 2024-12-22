@@ -32,3 +32,10 @@
 .input-group button:hover {
   background: #ffc700;
 }
+
+.google-map-container {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+}
