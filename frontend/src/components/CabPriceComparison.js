@@ -21,6 +21,9 @@ function CabPriceComparison() {
       rapido: cabData.rapido.filter(
         (ride) => ride.pickup === pickup && ride.dropoff === dropoff
       ),
+      uber: cabData.uber.filter(
+        (ride) => ride.pickup === pickup && ride.dropoff === dropoff
+      ),
     };
 
     // Combine the results into one array and sort by price
@@ -31,6 +34,7 @@ function CabPriceComparison() {
         platform: "Namma Yatri",
       })),
       ...filteredResults.rapido.map((ride) => ({ ...ride, platform: "Rapido" })),
+      ...filteredResults.uber.map((ride) => ({ ...ride, platform: "Uber" })),
     ].sort((a, b) => a.price - b.price);
 
     setCabFares(combinedResults); // Set the results in state
