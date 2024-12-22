@@ -46,7 +46,6 @@ function WalkingBuddyFinder() {
   ];
 
   const handleSearch = () => {
-    // Update buddy locations to match user input locality
     const updatedBuddies = buddies.map((buddy) => ({
       ...buddy,
       location: preferences.locality,
@@ -94,7 +93,9 @@ function WalkingBuddyFinder() {
           type="number"
           placeholder="Age (Optional)"
           value={preferences.age}
-          onChange={(e) => setPreferences({ ...preferences, age: e.target.value })}
+          onChange={(e) =>
+            setPreferences({ ...preferences, age: e.target.value })
+          }
         />
         <input
           type="text"
@@ -118,13 +119,52 @@ function WalkingBuddyFinder() {
           {buddies.map((buddy, index) => (
             <li key={index}>
               <strong>{buddy.name}</strong>: {buddy.personality},{" "}
-              {buddy.profession}, Age {buddy.age}, Location {buddy.location || "No location set"}
+              {buddy.profession}, Age {buddy.age}, Location{" "}
+              {buddy.location || "No location set"}
             </li>
           ))}
         </ul>
         <h3>Your Selected Locality:</h3>
         <p>{preferences.locality || "No locality selected yet."}</p>
       </div>
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .buddy-container {
+              padding: 10px;
+            }
+            h1 {
+              font-size: 1.8rem;
+            }
+            .input-group {
+              gap: 5px;
+            }
+            select,
+            input {
+              width: 100%;
+              font-size: 0.9rem;
+            }
+            button {
+              font-size: 0.9rem;
+            }
+          }
+
+          @media (min-width: 768px) and (max-width: 1200px) {
+            .buddy-container {
+              padding: 20px;
+            }
+            h1 {
+              font-size: 2.2rem;
+            }
+          }
+
+          @media (min-width: 1200px) {
+            h1 {
+              font-size: 2.5rem;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 }

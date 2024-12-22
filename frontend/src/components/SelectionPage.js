@@ -9,8 +9,8 @@ function SelectionPage() {
 
   return (
     <div className="selection-container">
-       <ThemeToggle />
-       <GoBackButton />
+      <ThemeToggle />
+      <GoBackButton />
       <h1>Welcome to GoConnect</h1>
       <p>Select an option to get started:</p>
       <div className="button-group">

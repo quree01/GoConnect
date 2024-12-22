@@ -4,8 +4,8 @@
   align-items: center;
   justify-content: flex-start; /* Align items from the top */
   padding: 20px;
-  background: white;
-  color: black;
+  background: inherit;
+  color: inherit;
   height: 100vh; /* Full viewport height */
   overflow: hidden; /* Prevent overflow */
 }

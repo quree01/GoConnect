@@ -13,16 +13,24 @@ function CabPriceComparison() {
     // Filter data for each platform based on pickup and dropoff locations
     const filteredResults = {
       ola: cabData.ola.filter(
-        (ride) => ride.pickup === pickup && ride.dropoff === dropoff
+        (ride) =>
+          ride.pickup.toLowerCase() === pickup.toLowerCase() &&
+          ride.dropoff.toLowerCase() === dropoff.toLowerCase()
       ),
       nammaYatri: cabData.nammaYatri.filter(
-        (ride) => ride.pickup === pickup && ride.dropoff === dropoff
+        (ride) =>
+          ride.pickup.toLowerCase() === pickup.toLowerCase() &&
+          ride.dropoff.toLowerCase() === dropoff.toLowerCase()
       ),
       rapido: cabData.rapido.filter(
-        (ride) => ride.pickup === pickup && ride.dropoff === dropoff
+        (ride) =>
+          ride.pickup.toLowerCase() === pickup.toLowerCase() &&
+          ride.dropoff.toLowerCase() === dropoff.toLowerCase()
       ),
       uber: cabData.uber.filter(
-        (ride) => ride.pickup === pickup && ride.dropoff === dropoff
+        (ride) =>
+          ride.pickup.toLowerCase() === pickup.toLowerCase() &&
+          ride.dropoff.toLowerCase() === dropoff.toLowerCase()
       ),
     };
 

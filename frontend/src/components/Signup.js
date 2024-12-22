@@ -20,19 +20,37 @@ function Signup() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        background: "white", // Changed background color to white
-        color: "black", // Adjusted text color for better visibility
+        background: "inherit", // Theme-based background
+        color: "inherit", // Theme-based text color
         textAlign: "center",
+        padding: "20px",
       }}
     >
-       <ThemeToggle />
-       <GoBackButton />
-      <div>
-        <img src="/logo.png" alt="GoConnect Logo" style={{ marginBottom: "20px" }} />
-        <h1>GoConnect</h1>
+      <ThemeToggle />
+      <GoBackButton />
+      <div style={{ marginBottom: "20px" }}>
+        <img
+          src="/logo.jpg"
+          alt="GoConnect Logo"
+          style={{
+            maxWidth: "150px",
+            marginBottom: "20px",
+          }}
+        />
+        <h1 style={{ fontSize: "2rem", marginBottom: "20px" }}>GoConnect</h1>
       </div>
-      <div>
-        <h2>Sign Up</h2>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "400px",
+          background: "#1c1c1c", // Dark background
+          padding: "20px",
+          borderRadius: "10px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
+          color: "white", // Text color
+        }}
+      >
+        <h2 style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -40,10 +58,13 @@ function Signup() {
             required
             style={{
               display: "block",
-              marginBottom: "10px",
+              width: "100%",
               padding: "10px",
-              width: "300px",
+              marginBottom: "15px",
+              border: "1px solid #444", // Dark border
               borderRadius: "5px",
+              background: "#2c2c2c", // Darker input background
+              color: "white", // Input text color
             }}
           />
           <input
@@ -52,10 +73,13 @@ function Signup() {
             required
             style={{
               display: "block",
-              marginBottom: "10px",
+              width: "100%",
               padding: "10px",
-              width: "300px",
+              marginBottom: "15px",
+              border: "1px solid #444",
               borderRadius: "5px",
+              background: "#2c2c2c",
+              color: "white",
             }}
           />
           <input
@@ -64,28 +88,37 @@ function Signup() {
             required
             style={{
               display: "block",
-              marginBottom: "10px",
+              width: "100%",
               padding: "10px",
-              width: "300px",
+              marginBottom: "15px",
+              border: "1px solid #444",
               borderRadius: "5px",
+              background: "#2c2c2c",
+              color: "white",
             }}
           />
           <button
             type="submit"
             style={{
-              padding: "10px 20px",
+              width: "100%",
+              padding: "10px",
               background: "#ffda45",
+              color: "black",
+              fontWeight: "bold",
               border: "none",
               borderRadius: "5px",
-              fontWeight: "bold",
               cursor: "pointer",
+              marginBottom: "10px",
             }}
           >
             Sign Up
           </button>
         </form>
         <p>
-          Already have an account? <a href="/">Login</a>
+          Already have an account?{" "}
+          <a href="/" style={{ color: "#ffda45" }}>
+            Login
+          </a>
         </p>
       </div>
     </div>

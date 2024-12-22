@@ -31,8 +31,8 @@ function ShareTrips() {
 
   return (
     <div className="share-trips-container">
-       <ThemeToggle />
-       <GoBackButton />
+      <ThemeToggle />
+      <GoBackButton />
       <h1>Share Trips</h1>
       <form className="trip-form" onSubmit={handlePostTrip}>
         <div className="form-group">

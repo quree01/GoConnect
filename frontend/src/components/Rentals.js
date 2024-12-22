@@ -27,14 +27,14 @@ function Rentals() {
 
   const handleSearch = () => {
     if (!Array.isArray(rentalData)) {
-      alert("Rental data is not available or not in correct format.");
+      alert("Rental data is not available or not in the correct format.");
       return;
     }
 
-    // Filter rentals based on type and location
+    // Filter rentals based on type and location (case-insensitive)
     const matches = rentalData.filter(
       (rental) =>
-        rental.type === rentalType &&
+        rental.type.toLowerCase() === rentalType.toLowerCase() &&
         rental.location.toLowerCase().includes(location.toLowerCase())
     );
 
@@ -61,6 +61,7 @@ function Rentals() {
           <label>Location:</label>
           <input
             type="text"
+            placeholder="Enter a location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             required
@@ -83,7 +84,7 @@ function Rentals() {
         </button>
       </form>
       {filteredRentals.length > 0 && (
-        <div className="rental-list">
+        <div className="rental-list scrollable">
           <h3>Available Rentals:</h3>
           <ul>
             {filteredRentals.map((rental, index) => (
